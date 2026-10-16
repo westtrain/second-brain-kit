@@ -55,7 +55,7 @@ def collect(root):
     docs = {}
     for path in brain.safe_files(root, FOLDERS):
         docs[path.relative_to(root).as_posix()] = path.read_text(encoding='utf-8')
-    for name in ('README.md', 'AGENTS.md', 'CLAUDE.md', 'MEMORY.md'):
+    for name in ('README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'MEMORY.md'):
         path = session_sync.safe(root, name)
         if path.exists():
             docs[name] = path.read_text(encoding='utf-8')
