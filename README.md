@@ -6,6 +6,51 @@ A local-first, file-based second brain for AI-assisted work. Plain Markdown, imm
 
 이 저장소에는 도구·공통 지침·빈 기록 구조·가상 예제만 있습니다. 실제 개인 기록은 아래 설치 도구로 별도 저장소에 만드세요.
 
+## 한눈에 보는 사용 흐름
+
+**작업 결과를 파일에 남기고, 다음 AI 세션이 그 기록을 읽어 이어서 작업합니다.**
+저장과 통합은 사용자가 요청할 때 진행합니다.
+
+```mermaid
+flowchart LR
+    user["오늘 작업<br/>저장해줘"] --> ai["Claude · Codex<br/>요청한 결과를 요약"]
+    ai --> sessions["sessions/<br/>세션별 기록 보존"]
+    sessions -->|통합 요청 · 근거 검토| projects["projects/<br/>현재 상태 · 다음 행동"]
+    projects --> next["다음 AI 세션<br/>이어서 작업"]
+    sessions -.->|미통합 기록도 함께 조회| next
+
+    classDef action fill:#eff6ff,stroke:#2563eb,color:#172554
+    classDef memory fill:#f0fdf4,stroke:#16a34a,color:#14532d
+    class user,ai,next action
+    class sessions,projects memory
+```
+
+예를 들어 오늘 “요구사항 정리 완료, 구현은 아직”을 저장하면, 다음 세션에서 완료한 일과 남은 일을 구분해 복구합니다.
+통합할 때 충돌하는 내용은 확정하지 않고 원래 세션 기록과 함께 통합 대기로 남깁니다.
+
+## 어디에 무엇이 저장되나요?
+
+다운로드한 공개 도구로 **나만의 로컬 브레인**을 따로 만듭니다. 실제 기록은 그 로컬 브레인 안에 쌓입니다.
+
+```mermaid
+flowchart TB
+    kit["second-brain-kit<br/>공개 도구 · 공통 지침 · 가상 예제"]
+    kit -->|init_brain.py로 최초 생성| brain["내 로컬 브레인<br/>Markdown + Git · 기본 원격 없음"]
+    brain --> entry["MEMORY.md · INDEX.md<br/>기억의 진입점과 색인"]
+    brain --> work["projects/ · sessions/<br/>프로젝트 상태와 작업별 기록"]
+    brain --> knowledge["memory/ · decisions/ · notes/<br/>목표 · 선호 · 결정 · 지식"]
+    brain --> inbox["inbox/ · archive/<br/>미정리 메모와 보관 기록"]
+    brain --> tools["system/ · scripts/ · skills/<br/>운영 규칙 · 로컬 도구 · AI 스킬"]
+
+    classDef toolkit fill:#eff6ff,stroke:#2563eb,color:#172554
+    classDef local fill:#f0fdf4,stroke:#16a34a,color:#14532d
+    class kit toolkit
+    class brain,entry,work,knowledge,inbox,tools local
+```
+
+AI는 공통 지침과 색인에서 필요한 기록을 찾고, 로컬 도구는 저장·통합·검사·Git 변경을 처리합니다.
+개인 브레인과 업무 브레인은 각각 별도 저장소로 운영합니다.
+
 ## 5분 안에 시작하기
 
 필수: **Python 3.10 이상, Git 2.28 이상**. 기본 기능은 macOS·Linux에서 동작하며 파일 잠금에 POSIX fcntl을 사용합니다.
