@@ -5,6 +5,8 @@
 개인과 업무를 두 저장소로 나누고, 세션 기록·프로젝트 정본·결정·지식을 Git으로 관리합니다.
 실제 운영과 같은 구조·도구·검토 절차를 제공하며, 실제 기록과 기기 설정은 포함하지 않습니다.
 
+**기본은 가벼운 CLI입니다.** 검색 평가 도구를 함께 제공하며, MCP 연결과 QMD 검색은 필요한 경우에만 추가합니다.
+
 ## 한눈에 보는 전체 구조
 
 ```mermaid
@@ -109,6 +111,49 @@ python3 scripts/install_sync_skill.py --provider gemini --config ../config.json
 > 이 프로젝트의 현재 상태·기준일·미통합 기록·다음 행동을 근거와 함께 알려줘. 이번에는 읽기 전용이야.
 
 > 쌓인 세션을 프로젝트에 통합해줘. 충돌은 확정하지 말고 따로 보여줘.
+
+## 선택 기능: 검색 평가 · MCP · QMD
+
+기본 기능만으로 시작할 수 있습니다. 아래 기능은 서로 독립적으로 선택하며 실제 개인·업무 브레인에 자동 적용하지 않습니다.
+
+| 기능 | 역할 | 기본 상태 |
+|---|---|---|
+| 검색 평가 | 가상 질문·정답 문서·근거로 검색 품질 측정 | Python 도구와 가상 예제 포함 |
+| MCP | 문서 ID와 프로젝트 ID로 조회·저장 기능 호출 | 미연결, 연결 시 조회 전용 |
+| QMD | 키워드·의미 기반 검색 엔진 | 별도 설치·인덱스 설정 필요 |
+
+```mermaid
+flowchart LR
+    ai["선택한 AI"] --> cli["기존 CLI"]
+    ai --> mcp["선택적 MCP<br/>개인 또는 업무 하나만 연결"]
+    cli --> access["검색 · 원본 재조회 · snapshot"]
+    mcp --> access
+    access --> literal["기본 단어 검색"]
+    access -.-> qmd["선택적 QMD 검색"]
+    mcp --> writes["쓰기 명시적 활성화<br/>기존 Git 실행기 · 로컬 저장소만"]
+    cases["검토된 질문 · 정답 근거"] --> evaluation["검색 평가 도구"]
+    evaluation --> access
+```
+
+추가 설치 없이 가상 평가를 실행합니다. 기본 검색이 놓치는 질문도 결과에 그대로 표시합니다.
+
+```bash
+python3 scripts/evaluate_search.py --root examples/search-eval/work --scope work \
+  --dataset examples/search-eval/cases.json --split development
+```
+
+MCP가 필요하면 Python 가상 환경에 선택 의존성을 설치한 뒤, 생성한 브레인 하나의 연결 설정을 출력합니다.
+
+```bash
+python3 -m venv .venv-mcp
+.venv-mcp/bin/python -m pip install -r requirements-mcp.txt
+.venv-mcp/bin/python scripts/mcp_config.py --root ~/brains/my-second-brain/personal --scope personal
+```
+
+사용하는 앱의 로컬 MCP 설정에 출력 항목을 병합하세요. 기기 경로가 들어 있으므로 공개 저장소에 올리지 마세요.
+쓰기 도구는 `--enable-writes`로 별도 활성화하며, 첫 버전은 Git 원격이 없는 로컬 브레인만 수정합니다.
+검색 DB·평가셋도 개인/업무를 분리합니다. 검색 결과만으로 현재 상태를 확정하지 않고 원본과 최신 snapshot을 확인합니다.
+[MCP 도구·연결·쓰기 범위](docs/mcp.md) · [평가 지표·가상 사례·QMD 연결](docs/search-evaluation.md).
 
 ## 주간 통합·블로그·기억 점검
 

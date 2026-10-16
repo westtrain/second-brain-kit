@@ -1,0 +1,168 @@
+[
+  {
+    "id": "work-001",
+    "query": "문서 검토 주기",
+    "category": "detail",
+    "scope": "work",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/review-cycle.md"
+    ],
+    "evidence": {
+      "notes/review-cycle.md": "문서 검토 주기: 연 2회, 상반기와 하반기."
+    }
+  },
+  {
+    "id": "work-002",
+    "query": "예약이 두 번 만들어지는 것을 어떻게 막나요?",
+    "category": "paraphrase",
+    "scope": "work",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/idempotency.md"
+    ],
+    "evidence": {
+      "notes/idempotency.md": "예약 생성의 멱등성 키를 검사해 재시도로 인한 중복 생성을 방지한다."
+    }
+  },
+  {
+    "id": "work-003",
+    "query": "개인 독서 시간",
+    "category": "boundary",
+    "scope": "work",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [],
+    "evidence": {}
+  },
+  {
+    "id": "work-004",
+    "query": "로그인",
+    "category": "current-and-pending",
+    "scope": "work",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "projects/reading-app.md",
+      "sessions/reading-app/new-test.md"
+    ],
+    "evidence": {
+      "projects/reading-app.md": "로그인 수정 완료. 배포는 대기 중이다.",
+      "sessions/reading-app/new-test.md": "로그인 회귀 검사에서 가상 토큰 만료 문제가 재현되었다."
+    },
+    "forbidden_paths": [
+      "archive/old-login.md"
+    ]
+  },
+  {
+    "id": "work-005",
+    "query": "멱등성 키",
+    "category": "detail",
+    "scope": "work",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/idempotency.md"
+    ],
+    "evidence": {
+      "notes/idempotency.md": "같은 키의 요청에는 최초 처리 결과를 반환한다."
+    }
+  },
+  {
+    "id": "work-006",
+    "query": "일 년에 몇 차례 문서를 살펴보나요?",
+    "category": "paraphrase",
+    "scope": "work",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/review-cycle.md"
+    ],
+    "evidence": {
+      "notes/review-cycle.md": "문서 검토 주기: 연 2회, 상반기와 하반기."
+    }
+  },
+  {
+    "id": "work-007",
+    "query": "가상 달 탐사 예산",
+    "category": "no-answer",
+    "scope": "work",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [],
+    "evidence": {}
+  },
+  {
+    "id": "work-008",
+    "query": "로그인",
+    "category": "history",
+    "scope": "work",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "projects/reading-app.md",
+      "sessions/reading-app/new-test.md",
+      "archive/old-login.md"
+    ],
+    "evidence": {
+      "projects/reading-app.md": "로그인 수정 완료. 배포는 대기 중이다.",
+      "sessions/reading-app/new-test.md": "로그인 회귀 검사에서 가상 토큰 만료 문제가 재현되었다.",
+      "archive/old-login.md": "로그인 수정 전 오류가 발생했다."
+    },
+    "include_archive": true
+  },
+  {
+    "id": "personal-001",
+    "query": "개인 독서 시간",
+    "category": "detail",
+    "scope": "personal",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/reading-habit.md"
+    ],
+    "evidence": {
+      "notes/reading-habit.md": "개인 독서 시간은 토요일 오전 30분이다."
+    }
+  },
+  {
+    "id": "personal-002",
+    "query": "예약 생성 멱등성",
+    "category": "boundary",
+    "scope": "personal",
+    "split": "development",
+    "review_status": "reviewed",
+    "relevant_paths": [],
+    "evidence": {}
+  },
+  {
+    "id": "personal-003",
+    "query": "개인 백업",
+    "category": "detail",
+    "scope": "personal",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "decisions/local-backup.md"
+    ],
+    "evidence": {
+      "decisions/local-backup.md": "개인 백업은 사용자가 선택한 로컬 디스크에 보관한다."
+    }
+  },
+  {
+    "id": "personal-004",
+    "query": "책 읽는 시간은 주말 언제였지?",
+    "category": "paraphrase",
+    "scope": "personal",
+    "split": "test",
+    "review_status": "reviewed",
+    "relevant_paths": [
+      "notes/reading-habit.md"
+    ],
+    "evidence": {
+      "notes/reading-habit.md": "개인 독서 시간은 토요일 오전 30분이다."
+    }
+  }
+]

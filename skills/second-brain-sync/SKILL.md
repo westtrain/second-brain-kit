@@ -5,7 +5,7 @@ description: >-
   개인·업무를 분리하고 불변 세션 기록·프로젝트 등록부·linked worktree 절차를 따른다.
 metadata:
   category: workflow
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # 세컨브레인 동기화
@@ -15,6 +15,13 @@ metadata:
 경험 전달은 [특정 검토본 승인 절차](references/experience-export.md)를 따른다.
 
 ## 경로와 지침
+
+선택적 second-brain MCP가 연결돼 있다면 brain_info로 실제 scope·쓰기 모드·지침 문서 ID를 먼저 확인한다.
+서버가 반환한 지침을 get_document로 읽고 search → 관련 문서 → project_snapshot 순으로 조회한다.
+다른 scope 서버를 자동으로 함께 조회하지 않는다. 쓰기는 사용자 요청과 활성화된 도구 범위 안에서만 한다.
+record_session은 세션 저장이며 integrate_project는 별도 통합 요청이다. review 결과는 정본 반영으로 보고하지 않는다.
+MCP에 쓰기 도구가 없거나 거부되면 파일 직접 쓰기로 제한을 우회하지 않는다.
+아래 CLI 흐름은 MCP 없이 로컬 도구를 사용하는 환경의 기존 절차다. MCP 연결 자체가 CLI 접근 권한을 부여하지 않는다.
 
 이 스킬 디렉터리의 기기별 config.json에서 personal/work 경로를 읽는다.
 조회·저장·통합 요청마다 다음을 먼저 호출한다. 프로젝트 밖 메모는 --project를 생략한다.

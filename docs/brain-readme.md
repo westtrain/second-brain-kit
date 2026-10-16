@@ -21,4 +21,7 @@ python3 scripts/memory_tools.py audit --json
 프로젝트는 비어 있습니다. “새 프로젝트를 등록하고 오늘 작업을 요약으로 저장해줘”로 시작하세요.
 기록 통합은 별도 요청입니다. 모순·과거 기록·미확인 날짜를 자동 확정하지 않습니다.
 
+선택 기능으로 [MCP 연결](../docs/mcp.md), [검색 평가·QMD](../docs/search-evaluation.md)를 제공합니다.
+MCP는 서버 하나에 이 브레인 하나만 연결하며 기본 조회 전용입니다. 실제 기록·검색 인덱스·연결 설정을 공개하지 않습니다.
+
 이 도구의 배포·업데이트 안내: https://github.com/westtrain/second-brain-kit
