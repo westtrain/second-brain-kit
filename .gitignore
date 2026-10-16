@@ -4,6 +4,12 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-mcp/
+.qmd/
+*.sqlite
+*.sqlite-*
+evaluation-local/
+.mcp.json
 .env
 .env.*
 *.key

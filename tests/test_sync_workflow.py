@@ -17,7 +17,8 @@ class SyncWorkflowTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
         self.root = self.base / 'brain'
-        shutil.copytree(SOURCE, self.root, ignore=shutil.ignore_patterns('.git', '__pycache__'))
+        shutil.copytree(SOURCE, self.root, ignore=shutil.ignore_patterns(
+            '.git', '__pycache__', '.venv', '.venv-mcp', '.qmd', '*.sqlite', '*.sqlite-*', 'evaluation-local'))
         (self.root / 'system/project-registry.json').write_text(json.dumps({'version': 1, 'projects': [
             dict(id='synthetic-project', title='Synthetic project', purpose='Test only', source='Synthetic test', aliases=[], session_groups=[])
         ]}))

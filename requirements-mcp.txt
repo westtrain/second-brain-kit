@@ -1,0 +1,3 @@
+# Optional. Core CLI, literal search and evaluation need only Python's standard library.
+# Maintained SDK v1 API, bounded to avoid an unreviewed major-version migration.
+mcp>=1.28,<2

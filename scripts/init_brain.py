@@ -24,10 +24,10 @@ def initialize(target, scope='personal'):
         raise ValueError('create your brain outside the public toolkit')
     target.mkdir(parents=True)
     # Infrastructure allowlist. Never copy content folders, INDEX, .git, or machine config.
-    files = [Path(n) for n in ('AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'MEMORY.md', '.gitignore', 'LICENSE')]
+    files = [Path(n) for n in ('AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'MEMORY.md', '.gitignore', 'LICENSE', 'requirements-mcp.txt')]
     for folder, pattern in [('scripts', '*.py'), ('tests', 'test_*.py'), ('templates', '*.md'), ('.githooks', '*'), ('system', '*.md')]:
         files.extend(Path(folder) / p.name for p in sorted((ROOT / folder).glob(pattern)) if p.is_file())
-    for folder in ('automation', 'profiles', 'docs'):
+    for folder in ('automation', 'profiles', 'docs', 'examples'):
         for source in sorted((ROOT / folder).rglob('*')):
             if source.is_file() and source.suffix in ('.py', '.md', '.json') and source.name != 'config.json':
                 files.append(source.relative_to(ROOT))
