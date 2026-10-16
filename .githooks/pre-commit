@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+python3 scripts/git_guard.py
+python3 scripts/brain.py staged-check
