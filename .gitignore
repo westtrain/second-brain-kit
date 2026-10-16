@@ -17,3 +17,5 @@ skills/**/config.json
 *.tar
 *.gz
 .obsidian/
+
+automation/config.json

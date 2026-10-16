@@ -9,7 +9,14 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def install(target, personal_root):
+def install(target, personal_root, config_source=None):
+    if config_source:
+        initial = json.loads(config_source.read_text(encoding='utf-8'))
+        if not isinstance(initial, dict) or not initial.get('personal'):
+            raise ValueError('routing config requires personal root')
+        paths = [Path(initial[k]).expanduser().resolve() for k in ('personal', 'work') if initial.get(k)]
+        if len(paths) == 2 and (paths[0] == paths[1] or paths[0] in paths[1].parents or paths[1] in paths[0].parents):
+            raise ValueError('personal/work roots must be disjoint')
     target = target.expanduser().absolute()
     for path in (target, *target.parents):
         if path.is_symlink():
@@ -43,7 +50,8 @@ def install(target, personal_root):
         shutil.copy2(files[name], dest)
     if not config.exists():
         with config.open('x', encoding='utf-8') as out:
-            json.dump({'personal': str(personal_root.resolve()), 'work': None}, out, indent=2)
+            initial = json.loads(config_source.read_text()) if config_source else {'personal': str(personal_root.resolve()), 'work': None}
+            json.dump(initial, out, indent=2)
             out.write('\n')
     return {'installed': str(target), 'backup': str(backup) if backup else None,
             'config': str(config), 'existing_config_preserved': True}
@@ -51,6 +59,10 @@ def install(target, personal_root):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--target', type=Path, default=Path.home() / '.claude/skills/second-brain-sync')
+    parser.add_argument('--target', type=Path)
+    parser.add_argument('--provider', choices=('claude', 'codex', 'gemini', 'grok'), default='claude')
+    parser.add_argument('--config', type=Path, help='Local routing config used only for a fresh installation')
     args = parser.parse_args()
-    print(json.dumps(install(args.target, ROOT), ensure_ascii=False, indent=2))
+    paths = {'claude': '.claude', 'codex': '.agents', 'gemini': '.gemini', 'grok': '.grok'}
+    target = args.target or Path.home() / paths[args.provider] / 'skills/second-brain-sync'
+    print(json.dumps(install(target, ROOT, args.config), ensure_ascii=False, indent=2))

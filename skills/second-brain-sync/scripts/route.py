@@ -24,7 +24,7 @@ def instruction_state(root, known=None):
     skill = Path(__file__).resolve().parents[1]
     selected = [(skill, 'SKILL.md'), (skill, 'references/experience-export.md')]
     selected += [(root, name) for name in (
-        'AGENTS.md', 'README.md', 'MEMORY.md', 'system/memory-maintenance.md', 'system/principles.md', 'system/privacy.md',
+        'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'README.md', 'MEMORY.md', 'system/memory-maintenance.md', 'system/principles.md', 'system/privacy.md',
         'system/conventions.md', 'system/workflows.md', 'system/git-workflow.md', 'system/bootstrap.md',
         'system/session-handoff.md', 'system/project-registry-guide.md',
         'system/experience-export.md', 'system/company-career.md',

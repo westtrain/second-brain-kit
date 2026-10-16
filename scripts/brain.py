@@ -102,7 +102,7 @@ def incident_time(value):
 def check(root):
     errors = []
     paths = list(safe_files(root, (*CONTENT, "inbox", "archive", "sessions", "system", "templates")))
-    for name in ("README.md", "AGENTS.md", "CLAUDE.md", "MEMORY.md", "INDEX.md"):
+    for name in ("README.md", "AGENTS.md", "CLAUDE.md", "GEMINI.md", "MEMORY.md", "INDEX.md"):
         if (root / name).exists():
             paths.append(root / name)
     for p in paths:
