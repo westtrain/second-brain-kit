@@ -25,7 +25,8 @@ def install(target, personal_root, config_source=None):
     files = {'SKILL.md': source / 'SKILL.md', 'scripts/route.py': source / 'scripts/route.py',
              'scripts/github_scope.py': ROOT / 'scripts/github_scope.py',
              'scripts/project_registry.py': ROOT / 'scripts/project_registry.py',
-             'references/experience-export.md': source / 'references/experience-export.md'}
+             'references/experience-export.md': source / 'references/experience-export.md',
+             'references/knowledge.md': source / 'references/knowledge.md'}
     config = target / 'config.json'
     if config.exists():
         if config.is_symlink():

@@ -112,6 +112,32 @@ python3 scripts/install_sync_skill.py --provider gemini --config ../config.json
 
 > 쌓인 세션을 프로젝트에 통합해줘. 충돌은 확정하지 말고 따로 보여줘.
 
+## 기록을 지식으로 활용하기
+
+작업 기록에서 적용 조건과 반례가 있는 원칙을 `notes/`에 만들고, 다음 작업에서 근거를 찾아 재사용합니다.
+질문·퀴즈·보고서·선택지 비교·판단 변화 조회를 같은 흐름으로 사용할 수 있습니다.
+
+```mermaid
+flowchart LR
+    input["지정한 글·PDF 발췌·영상 전사·작업 경험"] --> inbox["inbox · 출처와 종류"]
+    inbox --> knowledge["notes · 개념과 종합 판단<br/>주장별 근거·적용 조건·반례"]
+    knowledge --> retrieve["짧은 목록 → 선택한 근거"]
+    retrieve --> use["질문 · 학습 · 보고서 · 다음 작업"]
+    use --> revision["새 경험 · 반대 근거<br/>이전 판단을 보존하며 갱신"]
+    revision --> knowledge
+```
+
+새로운 가상 브레인에서 전체 흐름을 체험할 수 있습니다. AI 호출·원격·예약 없이 실행합니다.
+
+```bash
+python3 examples/knowledge_demo.py --target ~/brains/knowledge-demo
+```
+
+자료는 사용자가 지정한 텍스트만 받습니다. PDF/OCR·영상 전사·웹 자동 수집은 별도 도구의 영역입니다.
+지식 작성과 답변은 선택한 AI가 맡고, 로컬 도구는 scope·출처 해시·정확한 발췌와 Git 반영을 검사합니다.
+문서 일치 검사가 답변의 의미상 정확성을 보증하지는 않습니다.
+[가상 체험과 입력 형식](docs/knowledge-walkthrough.md) · [지식 운영 규칙](system/knowledge-workflow.md).
+
 ## 선택 기능: 검색 평가 · MCP · QMD
 
 기본 기능만으로 시작할 수 있습니다. 아래 기능은 서로 독립적으로 선택하며 실제 개인·업무 브레인에 자동 적용하지 않습니다.

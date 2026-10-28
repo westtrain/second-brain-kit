@@ -32,7 +32,7 @@ def initialize(target, scope='personal'):
             if source.is_file() and source.suffix in ('.py', '.md', '.json') and source.name != 'config.json':
                 files.append(source.relative_to(ROOT))
     skill = Path('skills/second-brain-sync')
-    files.extend(skill / n for n in ('SKILL.md', 'scripts/route.py', 'references/experience-export.md', 'config.example.json'))
+    files.extend(skill / n for n in ('SKILL.md', 'scripts/route.py', 'references/experience-export.md', 'references/knowledge.md', 'config.example.json'))
     for relative in files:
         source = ROOT / relative
         if source.is_symlink() or any(p.is_symlink() for p in source.parents if ROOT in p.parents):

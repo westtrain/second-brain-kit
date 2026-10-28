@@ -25,3 +25,8 @@ python3 scripts/memory_tools.py audit --json
 MCP는 서버 하나에 이 브레인 하나만 연결하며 기본 조회 전용입니다. 실제 기록·검색 인덱스·연결 설정을 공개하지 않습니다.
 
 이 도구의 배포·업데이트 안내: https://github.com/westtrain/second-brain-kit
+
+## 지식으로 재사용하기
+
+자료 수집·주장별 근거·지식 갱신과 질문/퀴즈/보고서는 [지식 흐름](../system/knowledge-workflow.md)과
+[가상 체험](../docs/knowledge-walkthrough.md)을 따른다. 생성한 기억은 공개 킷과 별도로 유지한다.
