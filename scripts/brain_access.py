@@ -16,6 +16,7 @@ GUIDES = ('AGENTS.md', 'MEMORY.md', 'INDEX.md', 'README.md',
           'system/principles.md', 'system/conventions.md', 'system/memory-maintenance.md',
           'system/project-registry-guide.md', 'system/experience-export.md',
           'system/ai-providers.md', 'system/session-handoff.md', 'system/company-career.md',
+          'system/knowledge-workflow.md', 'docs/knowledge-walkthrough.md',
           'docs/mcp.md', 'docs/search-evaluation.md', 'templates/search-evaluation.md')
 MAX_DOCUMENT_BYTES = 2_000_000
 

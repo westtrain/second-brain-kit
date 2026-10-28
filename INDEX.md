@@ -44,6 +44,7 @@
 - [system/conventions.md](system/conventions.md)
 - [system/experience-export.md](system/experience-export.md)
 - [system/git-workflow.md](system/git-workflow.md)
+- [system/knowledge-workflow.md](system/knowledge-workflow.md)
 - [system/memory-maintenance.md](system/memory-maintenance.md)
 - [system/principles.md](system/principles.md)
 - [system/privacy.md](system/privacy.md)
